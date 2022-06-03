@@ -8,10 +8,7 @@ const [deck, setDeck] = useState([])
 const [stackedCards, setStackedCards] = useState([])
 const [myCards, setMyCards] = useState([])
 
-useEffect(() => {
-
-  setDeck(Deck)
-
+const giveMeCards = () => {
   setMyCards([
     '/imgs/Cool.png',
     '/imgs/Bomba.png',
@@ -19,7 +16,16 @@ useEffect(() => {
     '/imgs/Macka 5.png',
     '/imgs/Zmesaj.png',
   ])
+}
 
+const resetDeck = () => {
+  setDeck(Deck)
+  giveMeCards()
+  setStackedCards([])
+}
+
+useEffect(() => {
+  resetDeck()
 }, [])
 
 const transferFromDeckToMe = (index) => {
@@ -42,7 +48,7 @@ const renderStackedCards = () => {
   return (
     stackedCards.map(card => {
    const degrees = Math.floor(Math.random() * 10 + 1)
-    return (<img   key={`stacked-${card}`} style={{transform: `rotate(${degrees}deg)`}} src={card} alt={card}/>)
+    return (<img onClick={resetDeck} key={`stacked-${card}`} style={{transform: `rotate(${degrees}deg)`}} src={card} alt={card}/>)
   })
   )
 }

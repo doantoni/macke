@@ -47,6 +47,7 @@
 .stacked-cards > img {
   max-width: 12rem;
   position: absolute;
+  cursor: pointer;
 }
 
 .player {
