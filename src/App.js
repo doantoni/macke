@@ -1,12 +1,17 @@
 import React, {useState, useEffect} from 'react'
+import { Deck } from './Deck'
 import './App.css';
 
 function App() {
 
-
+const [deck, setDeck] = useState([])
+const [stackedCards, setStackedCards] = useState([])
 const [myCards, setMyCards] = useState([])
 
 useEffect(() => {
+
+  setDeck(Deck)
+
   setMyCards([
     '/imgs/Cool.png',
     '/imgs/Bomba.png',
@@ -14,16 +19,45 @@ useEffect(() => {
     '/imgs/Macka 5.png',
     '/imgs/Zmesaj.png',
   ])
+
 }, [])
 
+const transferFromDeckToMe = (index) => {
+  let takenCard = deck.filter((card, i) => i === index)[0]
+  let deckNewCards = deck.filter((card, i) => i !== index)
+  setMyCards([...myCards, takenCard])
+  setDeck(deckNewCards)
+}
+
+const renderDeck = () => {
+  return (
+    deck.map((card, i) => {
+      const degrees = Math.floor(Math.random() * 10 + 1)
+      return (<img onClick={() => transferFromDeckToMe(i)} key={`deck-${card}`} style={{transform: `rotate(${degrees}deg)`}} src={card} alt={card}/>)
+    })
+  )
+}
+
+const renderStackedCards = () => {
+  return (
+    stackedCards.map(card => {
+   const degrees = Math.floor(Math.random() * 10 + 1)
+    return (<img   key={`stacked-${card}`} style={{transform: `rotate(${degrees}deg)`}} src={card} alt={card}/>)
+  })
+  )
+}
+
+const throwCard = (index) => {
+  let thrownCard = myCards.filter((card, i) => i === index)[0]
+  setMyCards(myCards.filter((card, i) => i !== index))
+  setStackedCards([...stackedCards, thrownCard])
+}
 
 const renderMyCards = () => {
   return(
-    <>
-    {
-      myCards.map(card => <img src={card} alt={card}/>)
-    }
-    </>
+    
+      myCards.map((card, i) => <img key={card} onClick={() => throwCard(i)} src={card} alt={card}/>)
+  
   )
 }
 
@@ -31,21 +65,29 @@ const renderMyCards = () => {
   return (
     <div className='app'>
       <div className="container">
-        <h1>Macke</h1>
-        <div className="main-cards">
-          <img src="/imgs/Cool.png" alt="" />
+        <h1>Mačke</h1>
+        <div className="deck">
+          {
+            renderDeck()
+          }
+        </div>
+        <div className="stacked-cards">
+          {
+            renderStackedCards()  
+          }
         </div>
         <div className="players">
-          <div className='player'>player1</div>
-          <div className='player'>player2</div>
-          <div className='player'>
-            {
-              renderMyCards()
-            }
-            player3
-            </div>
-          <div className='player'>player4</div>
+          <div className='player'>igrač 1</div>
+          <div className='player'>igrač 2</div>
+          <div className='player'>igrač 3</div>
+          <div className='player'>igrač 4</div>
         </div>
+        <div className="my-cards">
+        {
+          renderMyCards()
+        }
+        </div>
+        
       </div> 
     </div>
   );

@@ -8,7 +8,23 @@
 .container {
   background-color: blue;
   width: 80%;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
 }
+
+.deck {
+  position: absolute;
+  left: 10rem;
+  top: 40%;
+}
+.deck > img {
+  max-width: 8rem;
+  position: absolute;
+  cursor: pointer;
+}
+
 
 h1{
   margin: 0;
@@ -16,7 +32,7 @@ h1{
   color: white;
 }
 
-.main-cards {
+.stacked-cards {
   width: 100%;
   height: 100%;
   display: flex;
@@ -24,17 +40,19 @@ h1{
   align-items: center;
 }
 
-img {
+.stacked-cards > img {
   max-width: 15rem;
+  position: absolute;
 }
 
 .player {
   position: absolute;
-  background-color: green;
+  background-color: rgb(33, 69, 105);
   color: white;
   text-transform: uppercase;
-  height: 10rem;
-  width: 10rem;
+  height: 5rem;
+  width: 5rem;
+  font-size: x-small;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,7 +60,7 @@ img {
 
 .player > img {
   max-width: 70px;
-  margin: 10px;
+  margin: 10px
 }
 
 .player:nth-of-type(1){
@@ -58,9 +76,26 @@ img {
 .player:nth-of-type(3){
   bottom: 3rem;
   left: 10rem;
+  background-color: rgb(225, 191, 0);
+  color: black;
 }
 
 .player:nth-of-type(4){
   bottom: 3rem;
   right: 10rem;
+}
+
+.my-cards{
+  display: flex;
+}
+
+.my-cards > img {
+  max-width: 6rem;
+  margin: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.my-cards > img:hover {
+  transform: scale(1.1);
 }
