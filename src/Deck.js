@@ -1,171 +1,25 @@
-export const Deck = [
-    {
-        id: 1,
-        name: 'Bomba',
-        img: '/imgs/Bomba.png',
-        qty: 6,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 2,
-        name: 'Cool Mačka',
-        img: '/imgs/Cool.png',
-        qty: 4,
-        qty3: 2,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 3,
-        name: 'Daj kartu',
-        img: '/imgs/Daj kartu.png',
-        qty: 4,
-        qty3: 2,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 4,
-        name: 'Vuci s dna',
-        img: '/imgs/Dno.png',
-        qty: 2,
-        qty3: 2,
-        qty7: 2,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 5,
-        name: 'Drugi smjer',
-        img: '/imgs/Drugi smjer.png',
-        qty: 3,
-        qty3: 2,
-        qty7: 3,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 6,
-        name: 'Dupli šamar',
-        img: '/imgs/Dupli samar.png',
-        qty: 4,
-        qty3: 3,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 7,
-        name: 'Ivica',
-        img: '/imgs/Macka 1.png',
-        qty: 4,
-        qty3: 3,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 8,
-        name: 'Kiki',
-        img: '/imgs/Macka 2.png',
-        qty: 4,
-        qty3: 3,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 9,
-        name: 'Koki',
-        img: '/imgs/Macka 3.png',
-        qty: 4,
-        qty3: 3,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 10,
-        name: 'Katica',
-        img: '/imgs/Macka 4.png',
-        qty: 4,
-        qty3: 3,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 11,
-        name: 'Didi',
-        img: '/imgs/Macka 5.png',
-        qty: 4,
-        qty3: 3,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 12,
-        name: 'Napad',
-        img: '/imgs/Napad.png',
-        qty: 7,
-        qty3: 4,
-        qty7: 7,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 13,
-        name: 'Nou',
-        img: '/imgs/Nou.png',
-        qty: 6,
-        qty3: 4,
-        qty7: 6,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 14,
-        name: 'Pogledaj budućnost',
-        img: '/imgs/Pogledaj buducnost.png',
-        qty: 3,
-        qty3: 3,
-        qty7: 3,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 15,
-        name: 'Preskoči',
-        img: '/imgs/Preskoci.png',
-        qty: 7,
-        qty3: 4,
-        qty7: 7,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 16,
-        name: 'Promijeni budućnost',
-        img: '/imgs/Promijeni buducnost.png',
-        qty: 4,
-        qty3: 2,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 17,
-        name: 'Skopaj',
-        img: '/imgs/Skopaj.png',
-        qty: 2,
-        qty2: 2,
-        qty7: 2,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 18,
-        name: 'Superhero',
-        img: '/imgs/Spas.png',
-        qty: 7,
-        qty3: 3,
-        qty7: 7,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-    {
-        id: 19,
-        name: 'Zmešaj',
-        img: '/imgs/Zmesaj.png',
-        qty: 4,
-        qty3: 2,
-        qty7: 4,
-        imgBck: '/imgs/MackaPozadina.png',
-    },
-]
+import { DeckConfig } from "./DeckConfig"
+
+export const Deck = (numOfPlayers) => { 
+    console.log('num of players: ', numOfPlayers)
+    const multiplyingDeck = []
+    DeckConfig(numOfPlayers).map(card => {
+       for(let i = 0; i < card.qty; i++){
+        multiplyingDeck.push({...card, _id: `${card.img}${i}`})
+       }
+    })
+
+    function shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+        while (currentIndex != 0) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+        return array;
+      }
+
+    let returnDeck = shuffle(multiplyingDeck)
+    return returnDeck
+}

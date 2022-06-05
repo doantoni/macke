@@ -97,16 +97,43 @@
 .player {
   width: 10rem;
   height: 10rem;
+}
+
+.player > .circle {
+  width: 100%;
+  height: 100%;
   border-radius: 100%;
   background-color: gold;
-  border: 7px solid rebeccapurple;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Kalam', cursive;
-  font-size: x-large;
-  font-weight: 700;
+  box-sizing: border-box;
+  border: 5px solid rebeccapurple;
   background: -webkit-linear-gradient(45deg, rgb(241, 200, 13), rgb(204, 54, 9));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: x-large;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  font-family: 'Kalam', cursive;
+  font-weight: 700;
 }
+
+.player-cards {
+  position: absolute;
+  top: -5rem;
+  width: 20rem;
+  z-index: 1000000;
+}
+
+.player-cards:hover > img {
+  position: initial;
+}
+
+.player-cards > img {
+  z-index: 1000000;
+  max-width: 3rem;
+  margin: 2px;
+  padding: 2px;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+}
+
