@@ -4,18 +4,25 @@ import './App.css';
 
 function App() {
 
-const [deck, setDeck] = useState([])
+const [deck, setDeck] = useState(Deck)
 const [stackedCards, setStackedCards] = useState([])
 const [myCards, setMyCards] = useState([])
+const [players, setPlayers] = useState([])
 
+const initialNumOfCards = 5
+const numOfPlayers = 6
+  
 const giveMeCards = () => {
-  setMyCards([
-    '/imgs/Cool.png',
-    '/imgs/Bomba.png',
-    '/imgs/Macka 3.png',
-    '/imgs/Macka 5.png',
-    '/imgs/Zmesaj.png',
-  ])
+  let myCardsArr = []
+  let deckArr = deck
+  for(let i = 0 ; i < initialNumOfCards ; i++){
+    const cardIndex = Math.floor(Math.random()*deckArr.length)
+    var card = deckArr[cardIndex];
+    myCardsArr.push(card)
+    deckArr = deckArr.filter((card, i) => i !== cardIndex)
+  }
+  setMyCards(myCardsArr)
+  setDeck(deckArr)
 }
 
 const resetDeck = () => {
@@ -23,10 +30,6 @@ const resetDeck = () => {
   giveMeCards()
   setStackedCards([])
 }
-
-useEffect(() => {
-  resetDeck()
-}, [])
 
 const transferFromDeckToMe = (index) => {
   let takenCard = deck.filter((card, i) => i === index)[0]
@@ -39,16 +42,16 @@ const renderDeck = () => {
   return (
     deck.map((card, i) => {
       const degrees = Math.floor(Math.random() * 10 + 1)
-      return (<img onClick={() => transferFromDeckToMe(i)} key={`deck-${card}`} style={{transform: `rotate(${degrees}deg)`}} src={card} alt={card}/>)
+      return (<img onClick={() => transferFromDeckToMe(i)} key={`deck-${card.img}`} style={{transform: `rotate(${degrees}deg)`}} src={card.imgBck} alt={card.img}/>)
     })
   )
 }
 
-const renderStackedCards = () => {
+const renderPlayedCards = () => {
   return (
     stackedCards.map(card => {
    const degrees = Math.floor(Math.random() * 10 + 1)
-    return (<img onClick={resetDeck} key={`stacked-${card}`} style={{transform: `rotate(${degrees}deg)`}} src={card} alt={card}/>)
+    return (<img onClick={resetDeck} key={`stacked-${card.img}`} style={{transform: `rotate(${degrees}deg)`}} src={card.img} alt={card.img}/>)
   })
   )
 }
@@ -61,35 +64,58 @@ const throwCard = (index) => {
 
 const renderMyCards = () => {
   return(
-    
-      myCards.map((card, i) => <img key={card} onClick={() => throwCard(i)} src={card} alt={card}/>)
-  
+      myCards.map((card, i) => <img key={`my-${card?.img}`} onClick={() => throwCard(i)} src={card?.img} alt={card?.img}/>)
   )
 }
+
+useEffect(() => {
+  resetDeck()
+  let playersArr = []
+  for(let i = 0; i < numOfPlayers ; i++){
+    playersArr.push(i)
+  }
+  setPlayers(playersArr)
+}, [])
 
 
   return (
     <div className='app'>
       <div className="container">
-        <h1>Mačke</h1>
-        <div className="deck">
+      <h1>Mačke</h1>
+      <div className="room">
+        <div className="table">
           {
-            renderDeck()
+            players.map((player, i) => {
+              const turnDegrees = 360 / numOfPlayers
+              return (
+                <div style={{transform: `rotate(${i * turnDegrees}deg)`}} className="player-element">
+                  <div style={{transform: `rotate(-${i * turnDegrees}deg)`}} className="player">Igrač {i + 1}</div>
+                </div>
+               )
+            })
           }
-        </div>
-        <div className="stacked-cards">
-          {
-            renderStackedCards()  
-          }
-        </div>
-        <div className="players">
-          <div className='player'>igrač 1</div>
-          <div className='player'>igrač 2</div>
-          <div className='player'>igrač 3</div>
-          <div className='player'>igrač 4</div>
-        </div>
+            
+        </div>   
+      </div>
+       
+     
+         <div className="deck">
+           {
+             renderDeck()
+           }
+         </div>
+   
+    
+   
+         <div className="played-cards">
+           {
+             renderPlayedCards()  
+           }
+         </div>
+
+
         <div className="my-cards">
-        {
+        { myCards.length !==0 &&
           renderMyCards()
         }
         </div>

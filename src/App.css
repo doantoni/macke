@@ -1,5 +1,5 @@
 .app {
-  background-color: rgb(39, 63, 87);
+  background-color: rgb(0, 19, 37);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -14,9 +14,7 @@
 
 .container > h1 {
   font-size: 6rem;
-  position: relative;
-  top: 5rem;
-  font-family: 'Kalam', cursive;;
+  font-family: 'Kalam', cursive;
   text-align: center;
   color: white;
   background: -webkit-linear-gradient(45deg, rgb(241, 200, 13), rgb(204, 54, 9));
@@ -24,80 +22,61 @@
   -webkit-text-fill-color: transparent;
 }
 
-.deck {
-  position: absolute;
-  left: 30rem;
-  top: 40%;
-}
-
-.deck > img {
-  max-width: 8rem;
-  position: absolute;
-  cursor: pointer;
-}
-
-.stacked-cards {
+.room {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 
-.stacked-cards > img {
-  max-width: 12rem;
+.table {
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 35rem;
+  height: 35rem;
+  border-radius: 100%;
+  border: 6px solid saddlebrown;
+  background-image: url('https://images.unsplash.com/photo-1589874497556-65019ae69438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+  background-size: contain;
+  background-position: center;
+}
+
+
+.deck {
+  position: relative;
+  bottom: 45%;
+ transform: translate(-12rem);
+}
+.deck > img {
+  position: absolute;
+  max-width: 10rem;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+
+.played-cards {
+  position: absolute;
+  top: 37%;
+  left: 50%
+}
+
+.played-cards > img {
+  max-width: 14rem;
   position: absolute;
   cursor: pointer;
-}
-
-.player {
-  position: absolute;
-  background-color: rgb(31, 105, 179);
-  color: white;
-  text-transform: uppercase;
-  height: 7rem;
-  width: 7rem;
-  font-size: small;
-  display: flex;
-  border-radius: 100%;
-  box-shadow: 1px 1px 4px 2px rgb(34, 34, 34);
-  justify-content: center;
-  align-items: center;
-}
-
-.player > img {
-  max-width: 70px;
-  margin: 10px
-}
-
-.player:nth-of-type(1){
-  top: 20rem;
-  left: 30rem;
-}
-
-.player:nth-of-type(2){
-  top: 20rem;
-  right: 30rem;
-}
-
-.player:nth-of-type(3){
-  bottom: 20rem;
-  left: 30rem;
-  background-color: rgb(225, 191, 0);
-  color: black;
-}
-
-.player:nth-of-type(4){
-  bottom: 20rem;
-  right: 30rem;
 }
 
 .my-cards{
   display: flex;
+  height: 15rem;
 }
 
 .my-cards > img {
-  max-width: 6rem;
+  height: 10rem;
+  width: auto;
   margin: 10px;
   cursor: pointer;
   transition: transform 0.2s;
@@ -105,4 +84,29 @@
 
 .my-cards > img:hover {
   transform: scale(1.1);
+}
+
+.player-element {
+  position: absolute;
+  height: 50%;
+  width: 73%;
+  left: -23%;
+  transform-origin: bottom right;
+}
+
+.player {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 100%;
+  background-color: gold;
+  border: 7px solid rebeccapurple;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Kalam', cursive;
+  font-size: x-large;
+  font-weight: 700;
+  background: -webkit-linear-gradient(45deg, rgb(241, 200, 13), rgb(204, 54, 9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
