@@ -27,8 +27,6 @@ const giveMeCards = () => {
 
 const resetDeck = () => {
   setDeck(Deck)
-  giveMeCards()
-  setStackedCards([])
 }
 
 const transferFromDeckToMe = (index) => {
@@ -76,6 +74,13 @@ useEffect(() => {
   }
   setPlayers(playersArr)
 }, [])
+
+useEffect(() => {
+  if(deck.length === 19){
+    giveMeCards()
+    setStackedCards([])
+  }
+}, [deck])
 
 
   return (
