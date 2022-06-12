@@ -1,0 +1,14 @@
+.table {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 20rem;
+    height: 20rem;
+    border-radius: 100%;
+    border: 6px solid saddlebrown;
+    background-image: url('https://images.unsplash.com/photo-1589874497556-65019ae69438?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+    background-size: contain;
+    background-position: center;
+  }

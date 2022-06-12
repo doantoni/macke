@@ -1,0 +1,23 @@
+  .my-cards{
+    display: flex;
+    height: 8rem;
+  }
+
+  .popup-content {
+    background: transparent !important;
+    border: none !important;
+    overflow-x: scroll;
+  }
+  
+
+.my-cards > img {
+    height: 100%;
+    width: auto;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .my-cards > img:hover {
+    transform: scale(1.1);
+  }

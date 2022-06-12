@@ -1,0 +1,11 @@
+.played-cards {
+   position: absolute;
+   top: 40%;
+   left: 50%;
+  }
+  
+  .played-cards > img {
+    max-width: 5rem;
+    position: absolute;
+    cursor: pointer;
+  }

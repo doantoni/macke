@@ -1,0 +1,24 @@
+
+.main-title {
+    font-size: 3rem;
+    font-family: 'Kalam', cursive;
+    text-align: center;
+    color: white;
+    background: -webkit-linear-gradient(45deg, rgb(241, 200, 13), rgb(204, 54, 9));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+button {
+    padding: 0.5rem 2rem;
+    border-radius: 16px;
+    border: none;
+    text-transform: uppercase;
+    background: linear-gradient(45deg, yellow, rgb(255, 115, 0));
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(45deg, rgb(255, 115, 0), rgb(255, 115, 0));;
+}

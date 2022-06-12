@@ -1,0 +1,11 @@
+.deck {
+    position: absolute;
+    bottom: 55%;
+    left: 40vw;
+  }
+  .deck > img {
+    position: absolute;
+    max-width: 3rem;
+    cursor: pointer;
+    border: 1px solid black;
+  }
